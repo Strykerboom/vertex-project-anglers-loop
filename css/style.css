@@ -38,7 +38,8 @@ header .logo {
 }
 
 header .logo img {
-    max-height: 80px;
+    width: 250px; /* Adjusted for better visibility */
+    height: auto;
 }
 
 .navbar ul {
