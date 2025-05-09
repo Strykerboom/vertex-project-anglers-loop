@@ -47,7 +47,8 @@
                     bestBaits: "Shrimp, Mullet",
                     artificialLures: "Soft Plastics, Jigs",
                     fish: "Redfish, Flounder",
-                    ...generateTideData(), // Dynamically generate tide data
+                    tideData: [0.5, 1.0, 1.8, 2.5, 1.8, 1.0], // Static tide levels
+                    tideTimes: ["6:00 AM", "9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], // Static tide times
                     bestTime: "12:00 PM"
                 },
                 {
@@ -61,7 +62,8 @@
                     bestBaits: "Live Minnows, Artificial Lures",
                     artificialLures: "Topwater Lures, Spoons",
                     fish: "Redfish, Speckled Sea Trout, Flounder",
-                    ...generateTideData(), // Dynamically generate tide data
+                    tideData: [0.6, 1.2, 2.0, 2.6, 2.0, 1.2], // Static tide levels
+                    tideTimes: ["6:30 AM", "9:30 AM", "12:30 PM", "3:30 PM", "6:30 PM", "9:30 PM"], // Static tide times
                     bestTime: "3:30 PM"
                 },
                 {
@@ -75,8 +77,8 @@
                     bestBaits: "Crabs, Shrimp",
                     artificialLures: "Paddle Tails, Crankbaits",
                     fish: "Redfish, Speckled Sea Trout",
-                    tideData: [0.3, 0.8, 1.5, 2.0, 1.2, 0.5],
-                    tideTimes: ["7:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM", "10:00 PM"],
+                    tideData: [0.3, 0.8, 1.5, 2.0, 1.2, 0.5], // Static tide levels
+                    tideTimes: ["7:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM", "10:00 PM"], // Static tide times
                     bestTime: "1:00 PM"
                 },
                 {
@@ -90,8 +92,8 @@
                     bestBaits: "Fiddler Crabs, Shrimp",
                     artificialLures: "Spinnerbaits, Soft Plastics",
                     fish: "Redfish, Sheepshead",
-                    tideData: [0.6, 1.4, 2.1, 2.5, 1.8, 1.0],
-                    tideTimes: ["5:30 AM", "8:30 AM", "11:30 AM", "2:30 PM", "5:30 PM", "8:30 PM"],
+                    tideData: [0.6, 1.4, 2.1, 2.5, 1.8, 1.0], // Static tide levels
+                    tideTimes: ["5:30 AM", "8:30 AM", "11:30 AM", "2:30 PM", "5:30 PM", "8:30 PM"], // Static tide times
                     bestTime: "11:30 AM"
                 },
                 {
@@ -105,8 +107,8 @@
                     bestBaits: "Cut Bait, Squid",
                     artificialLures: "Metal Jigs, Poppers",
                     fish: "Redfish, Sharks, Spanish Mackerel",
-                    tideData: [0.7, 1.5, 2.3, 2.8, 2.0, 1.2],
-                    tideTimes: ["6:00 AM", "9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"],
+                    tideData: [0.7, 1.5, 2.3, 2.8, 2.0, 1.2], // Static tide levels
+                    tideTimes: ["6:00 AM", "9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], // Static tide times
                     bestTime: "6:00 PM"
                 },
             ];
@@ -338,6 +340,25 @@
             /* Darker gray when clicked */
             transform: scale(0.98);
             /* Slightly shrink on click */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #info-box {
+            font-size: 12px;
+            /* Smaller font size for the info box */
+        }
+
+        .directions-button {
+            font-size: 12px;
+            /* Smaller font size for the button */
+        }
+
+        footer p {
+            font-size: 12px;
+            /* Smaller font size for footer text */
         }
     </style>
 </head>
