@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Angler's Loop - Discover the best fishing spots and connect with fellow anglers. Join our community today!">
+    <meta name="description"
+        content="Angler's Loop - Discover the best fishing spots and connect with fellow anglers. Join our community today!">
     <meta name="keywords" content="fishing, anglers, fishing spots, fishing community, outdoor activities">
     <meta name="author" content="Angler's Loop Team">
     <title>Angler's Loop</title>
@@ -14,6 +15,83 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
+    <style>
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            position: fixed;
+            top: 70px;
+            /* Adjust to match the header height */
+            left: 0;
+            height: calc(100% - 70px);
+            /* Subtract header height */
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Main content styling */
+        .content {
+            margin-left: 0px;
+            /* Add space to the left to account for the fixed sidebar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center horizontally */
+            justify-content: center;
+            /* Center vertically */
+            text-align: center;
+            /* Center text inside the content */
+            min-height: calc(100vh - 70px);
+            /* Full viewport height minus the header height */
+            padding: 20px;
+            position: relative;
+            /* Ensure proper positioning */
+        }
+
+        /* Info section styling */
+        .info-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 80%;
+            /* Adjust width to make it look centered */
+            max-width: 800px;
+            /* Limit the maximum width for better readability */
+        }
+    </style>
 </head>
 
 <body>
@@ -22,7 +100,7 @@
             <div class="logo">
                 <a href="index.html" class="logo-link">
                     <img src="assets/images/anglers-loop-logo.png" alt="Tybee Fishing Logo" />
-                    
+
                 </a>
             </div>
             <nav class="navbar">
@@ -33,9 +111,230 @@
                 </ul>
             </nav>
         </header>
-        
+
         <main>
-            
+            <div class="content">
+                <h1>Welcome to Angler's Loop</h1>
+                <p>Learn more about fishing techniques, gear, and tips!</p>
+
+                <!-- Inshore Section -->
+                <div id="inshore-gear" class="info-section">
+                    <h2>Inshore: What You'll Need</h2>
+                    <p>For inshore fishing, you'll need light to medium rods, spinning reels, and a variety of baits
+                        such as shrimp or small baitfish. A tackle box with hooks, sinkers, and leaders is essential.
+                    </p>
+                </div>
+                <div id="inshore-setup" class="info-section">
+                    <h2>Inshore: Rod and Reel Setups</h2>
+                    <p>Use a 6-7 foot medium-action rod paired with a spinning reel spooled with 10-20 lb braided line.
+                        This setup is versatile for most inshore species.</p>
+                </div>
+                <div id="inshore-baits">
+                    <h2>Inshore: Baits</h2>
+                    <p>Live shrimp, mud minnows, and small crabs are excellent baits for inshore fishing. Artificial
+                        baits like soft plastics and topwater lures also work well.</p>
+                </div>
+                <div id="inshore-lures">
+                    <h2>Inshore: Artificial Lures</h2>
+                    <p>Soft plastics, paddle tails, and jerk baits are effective for inshore species like redfish,
+                        trout, and flounder. Use natural colors in clear water and brighter colors in murky water.</p>
+                </div>
+                <div id="inshore-spots">
+                    <h2>Inshore: How to Find Spots</h2>
+                    <p>Look for areas with structure such as docks, oyster beds, and grass flats. Tidal creeks and
+                        mangroves are also productive inshore fishing spots.</p>
+                </div>
+                <div id="inshore-rigs">
+                    <h2>Inshore: Rigs</h2>
+                    <p>Use a Carolina rig or a popping cork rig for live bait. For artificial lures, a jig head is a
+                        versatile option.</p>
+                </div>
+                <div id="inshore-rigging">
+                    <h2>Inshore: Rigging Your Gear</h2>
+                    <p>Attach a fluorocarbon leader to your main line to prevent fish from seeing the line. Use a loop
+                        knot for better lure action.</p>
+                </div>
+                <div id="inshore-tackle">
+                    <h2>Inshore: Tackle</h2>
+                    <p>Carry a variety of hooks, jig heads, and sinkers. A small tackle box with essentials like pliers,
+                        scissors, and extra line is recommended.</p>
+                </div>
+                <div id="inshore-cast">
+                    <h2>Inshore: How to Cast</h2>
+                    <p>Practice accurate casting to place your bait or lure near structure. Use a sidearm cast for
+                        low-hanging areas like docks.</p>
+                </div>
+                <div id="inshore-sustainable">
+                    <h2>Inshore: How to Fish Sustainably</h2>
+                    <p>Follow local regulations, release undersized fish, and avoid damaging sensitive habitats like
+                        seagrass beds.</p>
+                </div>
+                <div id="inshore-consistent">
+                    <h2>Inshore: How to Catch Fish Consistently</h2>
+                    <p>Fish during tidal changes, use the right bait for the target species, and pay attention to water
+                        temperature and clarity.</p>
+                </div>
+                <div id="inshore-fun">
+                    <h2>Inshore: How to Have Fun</h2>
+                    <p>Bring friends or family, enjoy the scenery, and take breaks to appreciate the experience.</p>
+                </div>
+                <div id="inshore-safety">
+                    <h2>Inshore: How to Stay Safe</h2>
+                    <p>Wear a life jacket, stay hydrated, and be aware of weather conditions. Avoid wading in areas with
+                        strong currents.</p>
+                </div>
+                <div id="inshore-handling">
+                    <h2>Inshore: How to Handle the Fish Properly</h2>
+                    <p>Use wet hands or a rubberized net to handle fish. Release them gently back into the water to
+                        minimize stress.</p>
+                </div>
+
+                <!-- Surf Section -->
+                <div id="surf-gear" class="info-section">
+                    <h2>Surf: What You'll Need</h2>
+                    <p>For surf fishing, you'll need a long rod (9-12 feet), a spinning reel with a high line capacity,
+                        and a sand spike to hold your rod. Waders or waterproof boots are helpful for accessing deeper
+                        areas.</p>
+                </div>
+                <div id="surf-setup" class="info-section">
+                    <h2>Surf: Rod and Reel Setups</h2>
+                    <p>Use a 10-12 foot surf rod paired with a spinning reel spooled with 20-30 lb braided line. This
+                        setup allows for long-distance casting and handling larger fish.</p>
+                </div>
+                <div id="surf-baits">
+                    <h2>Surf: Baits</h2>
+                    <p>Fresh cut bait, live sand fleas, and shrimp are excellent choices for surf fishing. Clams and
+                        squid are also effective for attracting a variety of species.</p>
+                </div>
+                <div id="surf-lures">
+                    <h2>Surf: Artificial Lures</h2>
+                    <p>Metal spoons, poppers, and soft plastics are effective for surf fishing. Use lures that mimic
+                        baitfish to attract predatory species like bluefish and striped bass.</p>
+                </div>
+                <div id="surf-spots">
+                    <h2>Surf: How to Find Spots</h2>
+                    <p>Look for areas with breaking waves, sandbars, and troughs. Fish tend to gather in these areas to
+                        feed. Early morning and late evening are the best times to fish.</p>
+                </div>
+                <div id="surf-rigs">
+                    <h2>Surf: Rigs</h2>
+                    <p>Use a fish finder rig or a double-drop rig for surf fishing. These rigs keep your bait in the
+                        strike zone and are effective for catching multiple species.</p>
+                </div>
+                <div id="surf-rigging">
+                    <h2>Surf: Rigging Your Gear</h2>
+                    <p>Attach a pyramid sinker to your rig to keep it anchored in the surf. Use circle hooks to improve
+                        hook-up rates and reduce harm to the fish.</p>
+                </div>
+                <div id="surf-tackle">
+                    <h2>Surf: Tackle</h2>
+                    <p>Carry a variety of hooks, sinkers, and swivels. A tackle box with pliers, scissors, and extra
+                        line is essential. Bring a bait bucket to keep live bait fresh.</p>
+                </div>
+                <div id="surf-cast">
+                    <h2>Surf: How to Cast</h2>
+                    <p>Use an overhead cast to achieve maximum distance. Practice your timing and release point to
+                        improve accuracy and distance.</p>
+                </div>
+                <div id="surf-sustainable">
+                    <h2>Surf: How to Fish Sustainably</h2>
+                    <p>Follow local regulations, avoid overfishing, and clean up after yourself. Release undersized fish
+                        and handle them carefully to ensure their survival.</p>
+                </div>
+                <div id="surf-consistent">
+                    <h2>Surf: How to Catch Fish Consistently</h2>
+                    <p>Fish during tidal changes and use fresh bait. Pay attention to water temperature and wave
+                        patterns to locate feeding fish.</p>
+                </div>
+                <div id="surf-fun">
+                    <h2>Surf: How to Have Fun</h2>
+                    <p>Bring a chair, snacks, and drinks to enjoy your time on the beach. Invite friends or family to
+                        make it a social activity.</p>
+                </div>
+                <div id="surf-safety">
+                    <h2>Surf: How to Stay Safe</h2>
+                    <p>Be aware of rip currents and avoid wading too deep. Wear sunscreen and stay hydrated to protect
+                        yourself from the sun.</p>
+                </div>
+                <div id="surf-handling">
+                    <h2>Surf: How to Handle the Fish Properly</h2>
+                    <p>Use a wet towel or rubberized net to handle fish. Remove hooks gently and release the fish
+                        quickly to minimize stress.</p>
+                </div>
+
+                <!-- Offshore Section -->
+                <div id="offshore-gear" class="info-section">
+                    <h2>Offshore: What You'll Need</h2>
+                    <p>For offshore fishing, you'll need heavy-duty rods, conventional reels, and terminal tackle like
+                        circle hooks and swivels. A boat with safety equipment, including life jackets and a first aid
+                        kit, is essential.</p>
+                </div>
+                <div id="offshore-setup" class="info-section">
+                    <h2>Offshore: Rod and Reel Setups</h2>
+                    <p>Use a 6-7 foot heavy-action rod paired with a conventional reel spooled with 50-80 lb braided
+                        line. This setup is ideal for targeting large species like tuna and marlin.</p>
+                </div>
+                <div id="offshore-baits">
+                    <h2>Offshore: Baits</h2>
+                    <p>Live bait such as mackerel, sardines, and squid are highly effective for offshore fishing. Cut
+                        bait and trolling lures are also commonly used.</p>
+                </div>
+                <div id="offshore-lures">
+                    <h2>Offshore: Artificial Lures</h2>
+                    <p>Trolling lures, poppers, and jigs are effective for offshore fishing. Use brightly colored lures
+                        to attract pelagic species like mahi-mahi and wahoo.</p>
+                </div>
+                <div id="offshore-spots">
+                    <h2>Offshore: How to Find Spots</h2>
+                    <p>Look for areas with underwater structures like reefs, wrecks, and drop-offs. Use a fish finder to
+                        locate schools of fish and baitfish activity.</p>
+                </div>
+                <div id="offshore-rigs">
+                    <h2>Offshore: Rigs</h2>
+                    <p>Use a trolling rig or a bottom fishing rig depending on your target species. Heavy-duty leaders
+                        and circle hooks are recommended for large fish.</p>
+                </div>
+                <div id="offshore-rigging">
+                    <h2>Offshore: Rigging Your Gear</h2>
+                    <p>Use crimping tools to secure heavy leaders and swivels. Ensure your knots are strong and reliable
+                        to handle the pressure of large fish.</p>
+                </div>
+                <div id="offshore-tackle">
+                    <h2>Offshore: Tackle</h2>
+                    <p>Carry a variety of hooks, leaders, and sinkers. A gaff and a fish bag are essential for landing
+                        and storing large fish.</p>
+                </div>
+                <div id="offshore-cast">
+                    <h2>Offshore: How to Cast</h2>
+                    <p>Offshore fishing often involves trolling or dropping bait rather than casting. If casting is
+                        required, use a heavy rod and reel to handle the weight of the bait and tackle.</p>
+                </div>
+                <div id="offshore-sustainable">
+                    <h2>Offshore: How to Fish Sustainably</h2>
+                    <p>Follow catch limits and avoid targeting endangered species. Use circle hooks to reduce bycatch
+                        and release unwanted fish carefully.</p>
+                </div>
+                <div id="offshore-consistent">
+                    <h2>Offshore: How to Catch Fish Consistently</h2>
+                    <p>Monitor water temperature, currents, and baitfish activity. Use a fish finder to locate schools
+                        of fish and adjust your techniques accordingly.</p>
+                </div>
+                <div id="offshore-fun">
+                    <h2>Offshore: How to Have Fun</h2>
+                    <p>Enjoy the open water and the thrill of catching large fish. Bring snacks, drinks, and music to
+                        make the trip enjoyable for everyone.</p>
+                </div>
+                <div id="offshore-safety">
+                    <h2>Offshore: How to Stay Safe</h2>
+                    <p>Wear a life jacket, monitor weather conditions, and ensure your boat is equipped with safety
+                        gear. Always let someone know your fishing plans.</p>
+                </div>
+                <div id="offshore-handling">
+                    <h2>Offshore: How to Handle the Fish Properly</h2>
+                    <p>Use a gaff or net to land large fish. Handle them carefully to avoid injury to yourself and the
+                        fish. Release unwanted fish quickly and safely.</p>
+                </div>
+            </div>
         </main>
         <footer>
             <nav class="navbar footer">
@@ -48,6 +347,38 @@
             <p>&copy; 2025 Angler's Loop Team</p>
         </footer>
     </div>
+    <script>
+        document.querySelectorAll('.dropdown-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const dropdown = button.parentElement;
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Hide all info sections by default
+        document.querySelectorAll('.info-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Add click event listeners to dropdown links
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            link.addEventListener('click', event => {
+                event.preventDefault(); // Prevent default anchor behavior
+
+                // Hide all sections
+                document.querySelectorAll('.info-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the clicked section
+                const targetId = link.getAttribute('href').substring(1); // Get the ID without the #
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
