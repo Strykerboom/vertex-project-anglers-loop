@@ -15,7 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2EaNTyfnaMSubePGzAiJqoM8OnftSCg&callback=initMap"defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT2EaNTyfnaMSubePGzAiJqoM8OnftSCg&callback=initMap"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Initialize the map
         function initMap() {
@@ -23,17 +25,90 @@
             const mapOptions = {
                 center: { lat: 32.00022000, lng: -80.84567000 }, // Replace with Tybee Island coordinates
                 zoom: 14,
+                mapTypeId: google.maps.MapTypeId.SATELLITE, // Set the default view to Satellite
             };
 
             // Create the map
             const map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+            // Create a single InfoWindow instance
+            const infoWindow = new google.maps.InfoWindow();
+
             // Fishing spots data
             const fishingSpots = [
-                { name: "19th St Jetties", lat: 31.59149, lng: -80.50524, info: "Good for surf fishing for Redfish and Flounder" },
-                { name: "Alley 3#", lat: 31.993208, lng: -80.853902, info: "Great for catching baigt fish from the surf and good for Redfish, Speckled sea trout, and Flounder" },
-                { name: "6th St Horse Pen", lat: 32.008264, lng: -80.849564, info: "Good during low to mide tides good for Redfish and Speckled sea trout" },
-                { name: "1st St Chimmney Cteek Brighe", lat: 32.018567, lng: -80.850716, info: "Best to fish at mid to high tide and best for bait fish, Redfish, and Sheepshead"},
+                {
+                    name: "19th St Jetties",
+                    lat: 31.987354,
+                    lng: -80.847778,
+                    info: "Good for surf fishing for Redfish and Flounder",
+                    tide: "Low tide",
+                    wind: "5-10 mph, NE",
+                    waterTemp: "75°F",
+                    bestBaits: "Shrimp, Mullet",
+                    artificialLures: "Soft Plastics, Jigs",
+                    fish: "Redfish, Flounder",
+                    ...generateTideData(), // Dynamically generate tide data
+                    bestTime: "12:00 PM"
+                },
+                {
+                    name: "Alley 3#",
+                    lat: 31.993208,
+                    lng: -80.853902,
+                    info: "Great for catching bait fish from the surf and good for Redfish, Speckled sea trout, and Flounder",
+                    tide: "High tide",
+                    wind: "5-15 mph, SE",
+                    waterTemp: "72°F",
+                    bestBaits: "Live Minnows, Artificial Lures",
+                    artificialLures: "Topwater Lures, Spoons",
+                    fish: "Redfish, Speckled Sea Trout, Flounder",
+                    ...generateTideData(), // Dynamically generate tide data
+                    bestTime: "3:30 PM"
+                },
+                {
+                    name: "6th St Horse Pen",
+                    lat: 32.008264,
+                    lng: -80.849564,
+                    info: "Good during low to mid tides, good for Redfish and Speckled sea trout",
+                    tide: "Low to mid tide",
+                    wind: "10-15 mph, NW",
+                    waterTemp: "70°F",
+                    bestBaits: "Crabs, Shrimp",
+                    artificialLures: "Paddle Tails, Crankbaits",
+                    fish: "Redfish, Speckled Sea Trout",
+                    tideData: [0.3, 0.8, 1.5, 2.0, 1.2, 0.5],
+                    tideTimes: ["7:00 AM", "10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM", "10:00 PM"],
+                    bestTime: "1:00 PM"
+                },
+                {
+                    name: "1st St Chimney Creek Bridge",
+                    lat: 32.018567,
+                    lng: -80.850716,
+                    info: "Best to fish at mid to high tide and best for bait fish, Redfish, and Sheepshead",
+                    tide: "Mid to high tide",
+                    wind: "5-10 mph, SW",
+                    waterTemp: "68°F",
+                    bestBaits: "Fiddler Crabs, Shrimp",
+                    artificialLures: "Spinnerbaits, Soft Plastics",
+                    fish: "Redfish, Sheepshead",
+                    tideData: [0.6, 1.4, 2.1, 2.5, 1.8, 1.0],
+                    tideTimes: ["5:30 AM", "8:30 AM", "11:30 AM", "2:30 PM", "5:30 PM", "8:30 PM"],
+                    bestTime: "11:30 AM"
+                },
+                {
+                    name: "Tybee Island Pier",
+                    lat: 31.991513,
+                    lng: -80.844686,
+                    info: "Good for catching bait fish, Redfish, sharks, and Spanish mackerel",
+                    tide: "High tide",
+                    wind: "5-20 mph, E",
+                    waterTemp: "74°F",
+                    bestBaits: "Cut Bait, Squid",
+                    artificialLures: "Metal Jigs, Poppers",
+                    fish: "Redfish, Sharks, Spanish Mackerel",
+                    tideData: [0.7, 1.5, 2.3, 2.8, 2.0, 1.2],
+                    tideTimes: ["6:00 AM", "9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"],
+                    bestTime: "6:00 PM"
+                },
             ];
 
             // Add markers
@@ -44,17 +119,227 @@
                     title: spot.name,
                 });
 
-                // Add info window
-                const infoWindow = new google.maps.InfoWindow({
-                    content: `<h3>${spot.name}</h3><p>${spot.info}</p>`,
-                });
-
                 marker.addListener("click", () => {
+                    // Set the content of the InfoWindow
+                    infoWindow.setContent(`
+                        <h3>${spot.name}</h3>
+                        <p>${spot.info}</p>
+                        <p><strong>Best Tide:</strong> ${spot.tide}</p>
+                        <p><strong>Wind:</strong> ${spot.wind}</p>
+                        <p><strong>Water Temperature:</strong> ${spot.waterTemp}</p>
+                        <p><strong>Best Baits:</strong> ${spot.bestBaits}</p>
+                        <p><strong>Artificial Lures:</strong> ${spot.artificialLures}</p>
+                        <p><strong>Fish You Can Catch:</strong> ${spot.fish}</p>
+                        <canvas id="tide-graph-${spot.lat}-${spot.lng}" width="300" height="150"></canvas>
+                        <button class="directions-button" onclick="getDirections(${spot.lat}, ${spot.lng})">Get Directions</button>
+                    `);
+
+                    // Open the InfoWindow on the current marker
                     infoWindow.open(map, marker);
+
+                    // Render the tide graph after the InfoWindow is opened
+                    setTimeout(() => {
+                        renderTideGraph(
+                            `tide-graph-${spot.lat}-${spot.lng}`,
+                            spot.tideData,
+                            spot.tideTimes,
+                            spot.bestTime
+                        );
+                    }, 100);
                 });
             });
+
+            // Event delegation for buttons
+            document.addEventListener("click", (event) => {
+                if (event.target.classList.contains("get-directions")) {
+                    const lat = event.target.getAttribute("data-lat");
+                    const lng = event.target.getAttribute("data-lng");
+                    getDirections(lat, lng);
+                }
+
+                if (event.target.classList.contains("show-info")) {
+                    const name = event.target.getAttribute("data-name");
+                    const info = event.target.getAttribute("data-info");
+                    const tide = event.target.getAttribute("data-tide");
+                    const wind = event.target.getAttribute("data-wind");
+                    const waterTemp = event.target.getAttribute("data-water-temp");
+                    const baits = event.target.getAttribute("data-baits");
+                    const fish = event.target.getAttribute("data-fish");
+                    showFishingInfo(name, info, tide, wind, waterTemp, baits, fish);
+                }
+            });
+        }
+
+        // Function to get directions
+        function getDirections(lat, lng) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+            window.open(url, "_blank");
+        }
+
+        // Function to show fishing info in the bottom-right corner
+        function showFishingInfo(name, info, tide, wind, waterTemp, bestBaits, fish) {
+            const infoBox = document.getElementById("info-box");
+            document.getElementById("info-title").textContent = name;
+            document.getElementById("info-description").textContent = info;
+            document.getElementById("info-tide").textContent = tide;
+            document.getElementById("info-wind").textContent = wind;
+            document.getElementById("info-water-temp").textContent = waterTemp;
+            document.getElementById("info-baits").textContent = bestBaits;
+            document.getElementById("info-fish").textContent = fish;
+            infoBox.style.display = "block";
+        }
+
+        // Function to render tide graph
+        function renderTideGraph(canvasId, tideData, tideTimes, bestTime) {
+            const ctx = document.getElementById(canvasId).getContext("2d");
+
+            // Find the index of the best time
+            const bestTimeIndex = tideTimes.indexOf(bestTime);
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: tideTimes,
+                    datasets: [
+                        {
+                            label: "Tide Levels",
+                            data: tideData,
+                            borderColor: "#007bff", // Blue line
+                            backgroundColor: "rgba(0, 123, 255, 0.2)", // Light blue fill
+                            fill: true, // Fill under the line
+                            tension: 0.4, // Smooth the line
+                        },
+                        {
+                            label: "Best Time",
+                            data: tideData.map((_, index) => (index === bestTimeIndex ? tideData[index] : null)),
+                            borderColor: "red", // Red point for best time
+                            pointBackgroundColor: "red",
+                            pointRadius: 6, // Larger point for emphasis
+                            fill: false,
+                            showLine: false, // Only show the point
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false, // Hide the legend for a cleaner look
+                        },
+                        tooltip: {
+                            enabled: true, // Enable tooltips for interactivity
+                        },
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: "Time",
+                                font: {
+                                    size: 14,
+                                    weight: "bold",
+                                },
+                            },
+                            grid: {
+                                display: false, // Remove vertical grid lines
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: "Tide Level (ft)",
+                                font: {
+                                    size: 14,
+                                    weight: "bold",
+                                },
+                            },
+                            grid: {
+                                display: false, // Remove horizontal grid lines
+                            },
+                            beginAtZero: true, // Ensure the graph starts at 0
+                        },
+                    },
+                },
+            });
+        }
+
+        // Function to generate tide data
+        function generateTideData() {
+            const now = new Date();
+            const hours = [6, 9, 12, 15, 18, 21]; // Example tide times (6 AM to 9 PM)
+            const tideLevels = hours.map(hour => {
+                // Generate tide levels using a sine wave for smooth variation
+                return (Math.sin((hour / 24) * 2 * Math.PI) + 1) * 2; // Scale between 0 and 4 ft
+            });
+
+            const tideTimes = hours.map(hour => {
+                const time = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour);
+                return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            });
+
+            return { tideLevels, tideTimes };
         }
     </script>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        #map {
+            position: relative;
+            width: 100%;
+            height: 900px;
+        }
+
+        #info-box {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            font-family: 'Roboto', sans-serif;
+            display: none;
+            z-index: 1000;
+        }
+
+        .directions-button {
+            background-color: #e0e0e0;
+            /* Light gray background */
+            color: #333;
+            /* Dark gray text */
+            border: 1px solid #ccc;
+            /* Subtle border */
+            border-radius: 4px;
+            /* Slightly rounded corners */
+            padding: 8px 16px;
+            /* Smaller padding */
+            font-size: 14px;
+            /* Smaller font size */
+            font-weight: normal;
+            /* Normal text weight */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Smooth hover effect */
+        }
+
+        .directions-button:hover {
+            background-color: #d6d6d6;
+            /* Slightly darker gray on hover */
+            transform: scale(1.02);
+            /* Slightly enlarge on hover */
+        }
+
+        .directions-button:active {
+            background-color: #c0c0c0;
+            /* Darker gray when clicked */
+            transform: scale(0.98);
+            /* Slightly shrink on click */
+        }
+    </style>
 </head>
 
 <body>
@@ -74,7 +359,17 @@
             </nav>
         </header>
         <main>
-            <div id="map" style="width: 100%; height: 900px;"></div>
+            <div id="map">
+                <div id="info-box">
+                    <h3 id="info-title"></h3>
+                    <p id="info-description"></p>
+                    <p><strong>Best Tide:</strong> <span id="info-tide"></span></p>
+                    <p><strong>Wind:</strong> <span id="info-wind"></span></p>
+                    <p><strong>Water Temperature:</strong> <span id="info-water-temp"></span></p>
+                    <p><strong>Best Baits:</strong> <span id="info-baits"></span></p>
+                    <p><strong>Fish You Can Catch:</strong> <span id="info-fish"></span></p>
+                </div>
+            </div>
         </main>
         <footer>
             <nav class="navbar footer">
