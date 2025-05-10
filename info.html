@@ -16,62 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
     <style>
-        /* Sidebar styling */
-        .sidebar {
-            width: 250px;
-            background-color: #f4f4f4;
-            padding: 15px;
-            position: fixed;
-            top: 70px;
-            /* Adjust to match the header height */
-            left: 0;
-            height: calc(100% - 70px);
-            /* Subtract header height */
-            overflow-y: auto;
-            border-right: 1px solid #ddd;
-        }
-
-        .sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #007bff;
-            font-size: 16px;
-            display: block;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: #e0e0e0;
-        }
-
         /* Main content styling */
         .content {
             margin-left: 0px;
             /* Add space to the left to account for the fixed sidebar */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            /* Center horizontally */
-            justify-content: center;
-            /* Center vertically */
-            text-align: center;
-            /* Center text inside the content */
             min-height: calc(100vh - 70px);
             /* Full viewport height minus the header height */
             padding: 20px;
@@ -90,6 +40,70 @@
             /* Adjust width to make it look centered */
             max-width: 800px;
             /* Limit the maximum width for better readability */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .expandable-section {
+            display: block;
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            min-width: 220px;
+            max-width: 100%;
+        }
+
+        .expandable-header {
+            padding: 18px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            background: #e6eefc;
+            border-bottom: 1px solid #ddd;
+            user-select: none;
+        }
+
+        .expandable-content {
+            padding: 0 20px 18px 20px;
+            display: none;
+            text-align: left;
+        }
+
+        .expandable-section.expanded .expandable-content {
+            display: block;
+        }
+
+        .expandable-section.expanded {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+
+
+        @media (max-width: 1200px) {
+            .info-masonry {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .info-masonry {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .info-masonry {
+                column-count: 1;
+            }
         }
     </style>
 </head>
@@ -114,221 +128,287 @@
 
         <main>
             <div class="content">
-                <h1>Welcome to Angler's Loop</h1>
-                <p>Learn more about fishing techniques, gear, and tips!</p>
-
-                <!-- Inshore Section -->
-                <div id="inshore-gear" class="info-section">
-                    <h2>Inshore: What You'll Need</h2>
-                    <p>For inshore , you'll need light to medium heavy rods, spinning reels or a bait cast (dont get a
-                        bait cast when starting out), and a variety of baits
-                        such as shrimp and small baitfish or using lures. A tackle box with hooks, sinkers, lure, and
-                        leaders are essential.
-                    </p>
+                <div class="section-title">
+                    <h1>Angler's Loop Resources</h1>
+                    <p>Helping you become a successful and sustainable angler!</p>
                 </div>
-                <div id="inshore-setup" class="info-section">
-                    <h2>Inshore: Rod and Reel Setups</h2>
-                    <p>Use a 6-7 foot medium-action rod paired with a 2500 size spinning reel spooled with 10-15 lb
-                        braided line.
-                        This setup is versatile for most inshore species.</p>
-                </div>
-                <div id="inshore-baits">
-                    <h2>Inshore: Baits</h2>
-                    <p>Live shrimp, mud minnows, and small crabs like fiddler crabs are excellent baits for inshore
-                        fishing. Artificial
-                        baits like soft plastics and topwater lures also work well but are also harder to use.</p>
-                </div>
-                <div id="inshore-lures">
-                    <h2>Inshore: Artificial Lures</h2>
-                    <p>Soft plastics like paddle tails or fake shrimp and crabs and jerk baits are effective for inshore
-                        species like redfish,
-                        trout, and flounder. Use natural colors in clear water and brighter colors in murky water. you
-                        can also get sents to put on your soft plastics.</p>
-                </div>
-                <div id="inshore-spots">
-                    <h2>Inshore: How to Find Spots</h2>
-                    <p>Look for areas with structure such as docks, briges, oyster beds, grass flats, and Tidal creeks.
-                        all of these are productive inshore fishing spots.</p>
-                </div>
-                <div id="inshore-rigs">
-                    <h2>Inshore: Rigs</h2>
-                    <p>Use a Carolina rig or a popping cork rig for live bait or with soft plastics. For artificial
-                        lures, a jig head is a
-                        versatile option.</p>
-                </div>
-                <div id="inshore-rigging">
-                    <h2>Inshore: Rigging Your Gear</h2>
-                    <p>Attach a fluorocarbon or a monofilament leader to your main line to prevent fish from seeing the
-                        line and perventing your main line(braid) from fraying. Use a loop
-                        knot for better lure action and for everything else use a uney or the improved clinch knot.</p>
-                </div>
-                <div id="inshore-tackle">
-                    <h2>Inshore: Tackle</h2>
-                    <p>Carry a variety of hooks, jig heads, and sinkers. A small tackle box with essentials like pliers,
-                        scissors, and extra line are key. when fishing from shore use a pier cart or wagain and/or a
-                        backpack.</p>
-                </div>
-                <div id="inshore-cast">
-                    <h2>Inshore: How to Cast</h2>
-                    <p>Practice accurate casting to place your bait or lure near structure. Use a sidearm cast for
-                        low-hanging areas like docks and over hand casts to get your bait farther out.</p>
-                </div>
-                <div id="inshore-sustainable">
-                    <h2>Inshore: How to Fish Sustainably</h2>
-                    <p>Follow local regulations, release undersized fish, and avoid damaging sensitive habitats like
-                        seagrass beds. This gos for all types of fishing.</p>
-                </div>
-                <div id="inshore-consistent">
-                    <h2>Inshore: How to Catch Fish Consistently</h2>
-                    <p>Fish during tidal changes, use the right bait for the target species, and pay attention to water
-                        temperature and clarity and pat attention to birds and the bait action if theres none of these
-                        move.</p>
-                </div>
-                <div id="inshore-fun">
-                    <h2>Inshore: How to Have Fun</h2>
-                    <p>Bring friends or family, enjoy the scenery, and take breaks to appreciate the experience. this
-                        gos for all tybes of fishing its good to go with friends and family.</p>
-                </div>
-                <div id="inshore-safety">
-                    <h2>Inshore: How to Stay Safe</h2>
-                    <p>Wear a life jacket, stay hydrated, and be aware of weather conditions. Avoid wading in areas with
-                        strong currents. this is how people die every year. In the U.S. rip currents cause over 100
-                        deaths annually.</p>
-                </div>
-                <div id="inshore-handling">
-                    <h2>Inshore: How to Handle the Fish Properly</h2>
-                    <p>Use wet hands or a rubberized net gloves to handle fish. Release them gently back into the water
-                        to
-                        minimize stress. This gos for all tybes of fishing.</p>
+                <!-- Inshore Sections -->
+                <h2>Inshore Fishing</h2>
+                <div class="info-masonry">
+                    <div class="expandable-section">
+                        <div class="expandable-header">What You'll Need</div>
+                        <div class="expandable-content">
+                            <p>For inshore, you'll need light to medium heavy rods, spinning reels or a bait cast (don't
+                                get a bait cast when starting out), and a variety of baits such as shrimp and small
+                                baitfish or using lures. A tackle box with hooks, sinkers, lure, and leaders are
+                                essential.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rod and Reel Setups</div>
+                        <div class="expandable-content">
+                            <p>Use a 6-7 foot medium-action rod paired with a 2500 size spinning reel spooled with 10-15
+                                lb braided line. This setup is versatile for most inshore species.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Live Baits</div>
+                        <div class="expandable-content">
+                            <p>Live shrimp, mud minnows, and small crabs like fiddler crabs are excellent baits for
+                                inshore fishing. Artificial baits like soft plastics and topwater lures also work well
+                                but are also harder to use.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Artificial Lures</div>
+                        <div class="expandable-content">
+                            <p>Soft plastics like paddle tails or fake shrimp and crabs and jerk baits are effective for
+                                inshore species like redfish, trout, and flounder. Use natural colors in clear water and
+                                brighter colors in murky water. You can also get scents to put on your soft plastics.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Find Spots</div>
+                        <div class="expandable-content">
+                            <p>Look for areas with structure such as docks, bridges, oyster beds, grass flats, and tidal
+                                creeks. All of these are productive inshore fishing spots.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigs to use</div>
+                        <div class="expandable-content">
+                            <p>Use a Carolina rig or a popping cork rig for live bait or with soft plastics. For
+                                artificial lures, a jig head is a versatile option.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigging Your Gear</div>
+                        <div class="expandable-content">
+                            <p>Attach a fluorocarbon or a monofilament leader to your main line to prevent fish from
+                                seeing the line and preventing your main line(braid) from fraying. Use a loop knot for
+                                better lure action and for everything else use a uney or the improved clinch knot.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Tackle</div>
+                        <div class="expandable-content">
+                            <p>Carry a variety of hooks, jig heads, and sinkers. A small tackle box with essentials like
+                                pliers, scissors, and extra line are key. when fishing from shore use a pier cart or
+                                wagain and/or a backpack.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Cast</div>
+                        <div class="expandable-content">
+                            <p>Practice accurate casting to place your bait or lure near structure. Use a sidearm cast
+                                for low-hanging areas like docks and over hand casts to get your bait farther out.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Fish Sustainably</div>
+                        <div class="expandable-content">
+                            <p>Follow local regulations, release undersized fish, and avoid damaging sensitive habitats
+                                like seagrass beds. This goes for all types of fishing.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Catch Fish Consistently</div>
+                        <div class="expandable-content">
+                            <p>Fish during tidal changes, use the right bait for the target species, and pay attention
+                                to water temperature and clarity and pat attention to birds and the bait action if
+                                there's none of these move.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Have Fun</div>
+                        <div class="expandable-content">
+                            <p>Bring friends or family, enjoy the scenery, and take breaks to appreciate the experience.
+                                This goes for all types of fishing it's good to go with friends and family.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Stay Safe</div>
+                        <div class="expandable-content">
+                            <p>Wear a life jacket, stay hydrated, and be aware of weather conditions. Avoid wading in
+                                areas with strong currents. This is how people die every year. In the U.S. rip currents
+                                cause over 100 deaths annually.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Handle the Fish Properly</div>
+                        <div class="expandable-content">
+                            <p>Use wet hands or a rubberized net gloves to handle fish. Release them gently back into
+                                the water to minimize stress. This goes for all types of fishing.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Surf Section -->
-                <div id="Surf fishing" class="info-section">
-                    <h1>Surf fishing</h1>
-                </div>
-                <div id="surf-gear" class="info-section">
-                    <h2>Surf: What You'll Need</h2>
-                    <p>For surf fishing, you'll need a long rod (8-12 feet), a 4000-10000 size spinning reel with a high
-                        line capacity,
-                        and a sand spike to hold your rod. Waders or waterproof boots are helpful for accessing deeper
-                        areas.</p>
-                </div>
-                <div id="surf-setup" class="info-section">
-                    <h2>Surf: Rod and Reel Setups</h2>
-                    <p>Use a 8-12 foot surf rod paired with a 4000-10000 spinning reel spooled with 30-80 lb braided
-                        line(people mostly use 40 or 50 lb braid). This
-                        setup allows for long-distance casting and handling larger fish in the surf.</p>
-                </div>
-                <div id="surf-baits">
-                    <h2>Surf: Baits</h2>
-                    <p>Fresh cut bait, live sand fleas, and shrimp are excellent choices for surf fishing. Clams and
-                        squid are also effective for attracting a variety of species(make sure to mach the size of your
-                        hook to your bait).</p>
-                </div>
-                <div id="surf-lures">
-                    <h2>Surf: Artificial Lures</h2>
-                    <p>Metal spoons, poppers, and soft plastics are effective for surf fishing. Use lures that mimic
-                        baitfish to attract predatory species like bluefish and spanish mackeral.</p>
-                </div>
-                <div id="surf-spots">
-                    <h2>Surf: How to Find Spots</h2>
-                    <p>Look for areas with breaking waves, sandbars, and troughs or find where the bait is. Fish tend to
-                        gather in these areas to
-                        feed. Early morning and late evening are the best times to fish.</p>
-                </div>
-                <div id="surf-rigs">
-                    <h2>Surf: Rigs</h2>
-                    <p>Use a fish finder rig or a double-drop rig for surf fishing. These rigs keep your bait in the
-                        strike zone and are effective for catching multiple species.</p>
-                </div>
-                <div id="surf-rigging">
-                    <h2>Surf: Rigging Your Gear</h2>
-                    <p>Attach a pyramid sinker or a spider weight to your rig to keep it anchored in the surf. Use
-                        circle hooks to improve
-                        hook-up rates and reduce harm to the fish.</p>
-                </div>
-                <div id="surf-tackle">
-                    <h2>Surf: Tackle</h2>
-                    <p>Carry a variety of hooks, sinkers, and swivels. A tackle box with pliers, scissors, and extra
-                        line is essential. Bring a bait bucket to keep live bait fresh.</p>
-                </div>
-                <div id="surf-consistent">
-                    <h2>Surf: How to Catch Fish Consistently</h2>
-                    <p>Fish during tidal changes and use fresh bait. Pay attention to water temperature and wave
-                        patterns to locate feeding fish.</p>
-                </div>
-                <div id="surf-safety">
-                    <h2>Surf: How to Stay Safe</h2>
-                    <p>Be aware of rip currents and avoid wading too deep. Wear sunscreen and stay hydrated to protect
-                        yourself from the sun.</p>
-                </div>
+                <h1>Surf fishing</h1>
+                <div class="info-masonry">
 
+                    <div class="expandable-section">
+                        <div class="expandable-header">What You'll Need</div>
+                        <div class="expandable-content">
+                            <p>For surf fishing, you'll need a long rod (8-12 feet), a 4000-10000 size spinning reel
+                                with a high line capacity, and a sand spike to hold your rod. Waders or waterproof boots
+                                are helpful for accessing deeper areas.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rod and Reel Setups</div>
+                        <div class="expandable-content">
+                            <p>Use a 8-12 foot surf rod paired with a 4000-10000 spinning reel spooled with 30-80 lb
+                                braided line(people mostly use 40 or 50 lb braid). This setup allows for long-distance
+                                casting and handling larger fish in the surf.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Baits</div>
+                        <div class="expandable-content">
+                            <p>Fresh cut bait, live sand fleas, and shrimp are excellent choices for surf fishing. Clams
+                                and squid are also effective for attracting a variety of species(make sure to mach the
+                                size of your hook to your bait).</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Artificial Lures</div>
+                        <div class="expandable-content">
+                            <p>Metal spoons, poppers, and soft plastics are effective for surf fishing. Use lures that
+                                mimic baitfish to attract predatory species like bluefish and spanish mackeral.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Find Spots</div>
+                        <div class="expandable-content">
+                            <p>Look for areas with breaking waves, sandbars, and troughs or find where the bait is. Fish
+                                tend to gather in these areas to feed. Early morning and late evening are the best times
+                                to fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigs</div>
+                        <div class="expandable-content">
+                            <p>Use a fish finder rig or a double-drop rig for surf fishing. These rigs keep your bait in
+                                the strike zone and are effective for catching multiple species.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigging Your Gear</div>
+                        <div class="expandable-content">
+                            <p>Attach a pyramid sinker or a spider weight to your rig to keep it anchored in the surf.
+                                Use circle hooks to improve hook-up rates and reduce harm to the fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Tackle</div>
+                        <div class="expandable-content">
+                            <p>Carry a variety of hooks, sinkers, and swivels. A tackle box with pliers, scissors, and
+                                extra line is essential. Bring a bait bucket to keep live bait fresh.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Catch Fish Consistently</div>
+                        <div class="expandable-content">
+                            <p>Fish during tidal changes and use fresh bait. Pay attention to water temperature and wave
+                                patterns to locate feeding fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Stay Safe</div>
+                        <div class="expandable-content">
+                            <p>Be aware of rip currents and avoid wading too deep. Wear sunscreen and stay hydrated to
+                                protect yourself from the sun.</p>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Offshore Section -->
-                <div id="offshore-fishing" class="info-section">
-                    <h1>offshore-fishing</h1>
+                <h1>offshore-fishing</h1>
+                <div class="info-masonry">
+
+                    <div class="expandable-section">
+                        <div class="expandable-header">What You'll Need</div>
+                        <div class="expandable-content">
+                            <p>For offshore fishing, you'll need heavy-duty rods, conventional reels or a 5000-10000
+                                sized spining reel, and terminal tackle like circle hooks and swivels.
+                                A boat with safety equipment, including life jackets and a first aid kits, are
+                                essential.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rod and Reel Setups</div>
+                        <div class="expandable-content">
+                            <p>Use a 6-7 foot heavy-action rod paired with a conventional reelor a 5000-10000 sized
+                                spining reel spooled with 80-100 lb braided line(go with 50-80 lb braided line for
+                                spining reels). This setup is ideal for targeting smaller tuna and cobia.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Baits</div>
+                        <div class="expandable-content">
+                            <p>Live bait such as mackerel, sardines, and squid are highly effective for offshore
+                                fishing. Cut bait and trolling lures are also commonly used.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Artificial Lures</div>
+                        <div class="expandable-content">
+                            <p>Trolling lures, poppers, and jigs are effective for offshore fishing. Use brightly
+                                colored lures to attract pelagic species like mahi-mahi and wahoo.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Find Spots</div>
+                        <div class="expandable-content">
+                            <p>Look for areas with underwater structures like reefs, wrecks, paches of sea grass on top,
+                                and drop-offs. Use a fish finder to locate schools of fish and baitfish activity.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigs</div>
+                        <div class="expandable-content">
+                            <p>Use a trolling rig or a bottom fishing rig depending on your target species. Heavy-duty
+                                leaders and circle hooks are recommended for large fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Rigging Your Gear</div>
+                        <div class="expandable-content">
+                            <p>Use crimping tools to secure heavy leaders and swivels. Ensure your knots are strong and
+                                reliable to handle the pressure of large fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">Tackle</div>
+                        <div class="expandable-content">
+                            <p>Carry a variety of hooks, leaders, and sinkers. A gaff and/or a net. Fish bag to keep
+                                fish are essential for landing and storing large fish.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Catch Fish Consistently</div>
+                        <div class="expandable-content">
+                            <p>Monitor water temperature, currents, and baitfish activity. Use a fish finder to locate
+                                schools of fish and adjust your techniques accordingly.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Stay Safe</div>
+                        <div class="expandable-content">
+                            <p>Wear a life jacket, monitor weather conditions, and ensure your boat is equipped with
+                                safety gear. Always let someone know your fishing plans.</p>
+                        </div>
+                    </div>
+                    <div class="expandable-section">
+                        <div class="expandable-header">How to Handle the Fish Properly</div>
+                        <div class="expandable-content">
+                            <p>Use a gaff or net to land large fish. Handle them carefully to avoid injury to yourself
+                                and the fish. Release unwanted fish quickly and safely.</p>
+                        </div>
+                    </div>
                 </div>
-                <div id="offshore-gear" class="info-section">
-                    <h2>Offshore: What You'll Need</h2>
-                    <p>For offshore fishing, you'll need heavy-duty rods, conventional reels or a 5000-10000 sized
-                        spining reel, and terminal tackle like
-                        circle hooks and swivels. A boat with safety equipment, including life jackets and a first aid
-                        kits, are essential.</p>
-                </div>
-                <div id="offshore-setup" class="info-section">
-                    <h2>Offshore: Rod and Reel Setups</h2>
-                    <p>Use a 6-7 foot heavy-action rod paired with a conventional reelor a 5000-10000 sized spining reel
-                        spooled with 80-100 lb braided line(go with 50-80 lb braided line for spining reels). This setup
-                        is ideal for targeting smaller tuna and cobia.</p>
-                </div>
-                <div id="offshore-baits">
-                    <h2>Offshore: Baits</h2>
-                    <p>Live bait such as mackerel, sardines, and squid are highly effective for offshore fishing. Cut
-                        bait and trolling lures are also commonly used.</p>
-                </div>
-                <div id="offshore-lures">
-                    <h2>Offshore: Artificial Lures</h2>
-                    <p>Trolling lures, poppers, and jigs are effective for offshore fishing. Use brightly colored lures
-                        to attract pelagic species like mahi-mahi and wahoo.</p>
-                </div>
-                <div id="offshore-spots">
-                    <h2>Offshore: How to Find Spots</h2>
-                    <p>Look for areas with underwater structures like reefs, wrecks, paches of sea grass on top, and
-                        drop-offs. Use a fish finder to
-                        locate schools of fish and baitfish activity.</p>
-                </div>
-                <div id="offshore-rigs">
-                    <h2>Offshore: Rigs</h2>
-                    <p>Use a trolling rig or a bottom fishing rig depending on your target species. Heavy-duty leaders
-                        and circle hooks are recommended for large fish.</p>
-                </div>
-                <div id="offshore-rigging">
-                    <h2>Offshore: Rigging Your Gear</h2>
-                    <p>Use crimping tools to secure heavy leaders and swivels. Ensure your knots are strong and reliable
-                        to handle the pressure of large fish.</p>
-                </div>
-                <div id="offshore-tackle">
-                    <h2>Offshore: Tackle</h2>
-                    <p>Carry a variety of hooks, leaders, and sinkers. A gaff and/or a net. Fish bag to keep fish are
-                        essential for landing
-                        and storing large fish.</p>
-                </div>>
-                <div id="offshore-consistent">
-                    <h2>Offshore: How to Catch Fish Consistently</h2>
-                    <p>Monitor water temperature, currents, and baitfish activity. Use a fish finder to locate schools
-                        of fish and adjust your techniques accordingly.</p>
-                </div>
-                <div id="offshore-safety">
-                    <h2>Offshore: How to Stay Safe</h2>
-                    <p>Wear a life jacket, monitor weather conditions, and ensure your boat is equipped with safety
-                        gear. Always let someone know your fishing plans.</p>
-                </div>
-                <div id="offshore-handling">
-                    <h2>Offshore: How to Handle the Fish Properly</h2>
-                    <p>Use a gaff or net to land large fish. Handle them carefully to avoid injury to yourself and the
-                        fish. Release unwanted fish quickly and safely.</p>
-                </div>
-            </div>
         </main>
         <footer>
             <nav class="navbar footer">
@@ -342,34 +422,9 @@
         </footer>
     </div>
     <script>
-        document.querySelectorAll('.dropdown-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const dropdown = button.parentElement;
-                dropdown.classList.toggle('active');
-            });
-        });
-
-        // Hide all info sections by default
-        document.querySelectorAll('.info-section').forEach(section => {
-            section.style.display = 'none';
-        });
-
-        // Add click event listeners to dropdown links
-        document.querySelectorAll('.dropdown-content a').forEach(link => {
-            link.addEventListener('click', event => {
-                event.preventDefault(); // Prevent default anchor behavior
-
-                // Hide all sections
-                document.querySelectorAll('.info-section').forEach(section => {
-                    section.style.display = 'none';
-                });
-
-                // Show the clicked section
-                const targetId = link.getAttribute('href').substring(1); // Get the ID without the #
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    targetSection.style.display = 'block';
-                }
+        document.querySelectorAll('.expandable-section').forEach(section => {
+            section.querySelector('.expandable-header').addEventListener('click', function () {
+                section.classList.toggle('expanded');
             });
         });
     </script>
